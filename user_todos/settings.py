@@ -160,7 +160,7 @@ TINYMCE_DEFAULT_CONFIG = {
     "theme": "silver",
     "height": 500,
     "menubar": False,
-    "plugins": "advlist,autolink,lists,link,image,charmap,print,preview,anchor,searchreplace,visualblocks,fullscreen,insertdatetime,media,table,paste,code,help,wordcount,emoticons",
+    "plugins": "advlist,autolink,lists,link,image,charmap,preview,anchor,searchreplace,visualblocks,fullscreen,insertdatetime,media,table,code,help,wordcount,emoticons",
     "toolbar": "undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help | image link table | code fullscreen visualblocks preview emoticons",
 }
 

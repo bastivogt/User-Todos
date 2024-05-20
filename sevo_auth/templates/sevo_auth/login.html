@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_main.html" %}
 {% load i18n %}
 
 
@@ -7,7 +7,7 @@
 {% endblock %}
 
 
-{% block content %}
+{% block main %}
         {% if user.is_authenticated %}
             <h1 class="display-1">Hallo, {{ user.get_username }}!</h1>
             <a class="btn btn-primary" href="{% url "sevo-auth-logout" %}">{% trans "logout_btn" %}</a>
