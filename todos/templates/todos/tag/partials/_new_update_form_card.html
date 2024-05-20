@@ -1,0 +1,24 @@
+{% load i18n %}
+<div class="card">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="card-header">
+            <h3>{{ title }}</h3>
+        </div>
+        <div class="card-body">
+            <div class="mb-3">
+                {{ form.name.label_tag }}
+                {{ form.name }}
+                {% if form.name.errors %}
+                    <div class="alert alert-danger mt-1">
+                        {{ form.title.errors }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-primary">{{ send_btn_title }}</button>
+            <button class="btn btn-primary back-link" type="button">{% trans "back_link" %}</button>
+        </div>
+    </form>
+</div>

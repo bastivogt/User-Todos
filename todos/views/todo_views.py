@@ -76,7 +76,7 @@ def new(request):
     
     
     if request.method == "POST":
-        form = forms.TodoForm(request.POST, request=request, instance=todo)
+        form = forms.TodoForm(request.POST, instance=todo)
         
         if form.is_valid():
             form.save()
@@ -90,7 +90,7 @@ def new(request):
 
             
     else:
-        form = forms.TodoForm(request=request, instance=todo)
+        form = forms.TodoForm(instance=todo)
 
     return render(request, "todos/todo/new.html", {
         "title": _("todos_new_title"),
@@ -109,8 +109,9 @@ def update(request, id):
     todo = get_object_or_404(models.Todo, id=id, user=current_user)
 
     
+    
     if request.method == "POST":
-        form = forms.TodoForm(request.POST, instance=todo, request=request)
+        form = forms.TodoForm(request.POST, instance=todo)
         if form.is_valid():
             form.save()
             messages.add_message(request, messages.SUCCESS, _("todos_new_success_msg"))
@@ -123,7 +124,7 @@ def update(request, id):
 
             
     else:
-        form = forms.TodoForm(instance=todo, request=request)
+        form = forms.TodoForm(instance=todo)
 
     return render(request, "todos/todo/new.html", {
         "title": f"{todo.title}",

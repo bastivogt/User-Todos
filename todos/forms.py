@@ -29,10 +29,10 @@ class TodoForm(forms.ModelForm):
             "done": forms.CheckboxInput(attrs={"class": "form-check-input"})
         }
 
-    def __init__(self, request, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        logged_user = request.user
-        self.fields["tags"].queryset = models.Tag.objects.filter(user=logged_user)
+        print(self.instance.user)
+        self.fields["tags"].queryset = models.Tag.objects.filter(user=self.instance.user)
 
 
 class TagForm(forms.ModelForm):

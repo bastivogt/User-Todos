@@ -1,0 +1,27 @@
+{% load i18n %}
+<div class="table-responsive">
+    <table class="table table-bordered align-middle">
+        <thead class="table-light">
+        <tr>
+            <th scope="col">{% trans "todos_tags_name_lbl" %}</th>
+            <th scope="col">{% trans "todos_table_actions" %}</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for tag in tags %}
+                <tr>
+                    <th scope="row">
+                        {{ tag.name }}
+                    </th>
+                    <td>
+                        <div class="d-flex justify-content-start align-content-center">
+                            <a class="btn btn-primary btn-sm d-block m-1" href="#">{% trans "todos_detail_btn" %}</a>
+                            <a class="btn btn-primary btn-sm d-block m-1" href="#">{% trans "todos_upadate_btn" %}</a>
+                            <a class="btn btn-danger btn-sm d-block m-1" href="#">{% trans "todos_delete_btn" %}</a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

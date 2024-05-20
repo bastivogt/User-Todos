@@ -13,5 +13,5 @@ urlpatterns = [
     path("delete/<int:id>", todo_views.delete, name="todos-delete"),
 
     path("tags/", tag_views.tag_index, name="todos-tag-index"),
-    path("tag/new", tag_views.tag_index, name="todos-tag-new"),
+    path("tag/new", tag_views.tag_new, name="todos-tag-new"),
 ]

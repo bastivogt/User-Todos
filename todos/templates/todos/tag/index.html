@@ -7,8 +7,8 @@
 
 
 {% block header %}
-    <div class="container">
-        <div class="row py-5">
+    <div class="container py-5">
+        <div class="row">
             <div class="col-lg-12">
                 <a class="btn btn-outline-primary btn-lg mb-3" href="{% url "todos-tag-new" %}">{% trans "todos_tag_new_btn" %}</a>
             </div>
@@ -17,6 +17,6 @@
 {% endblock %}
 
 {% block main %}
-
+    {% include "todos/tag/partials/_table_list.html" %}
 {%  endblock %}
 
