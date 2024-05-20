@@ -18,7 +18,7 @@ from . import models
 
 class SevoLoginForm(forms.Form):
     username = forms.CharField(max_length=255, label=_("username_lbl"))
-    password = forms.CharField(widget=forms.PasswordInput, label=_("password_lbl"))
+    password = forms.CharField(label=_("password_lbl"), widget=forms.PasswordInput)
 
 
     def __init__(self, *args, **kwargs):

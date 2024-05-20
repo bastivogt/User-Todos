@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+
+{% block content %}
+    <div class="card">
+        <div class="card-header">
+            <h3>{{ todo.title }}
+                <span class="badge {% if todo.done %}text-bg-success{% else %}text-bg-warning{% endif %}">
+                    {% if todo.done %}
+                        {% trans "todos_done_btn" %}
+                    {% else %}
+                        {% trans "todos_not_done_btn" %}
+                    {% endif %}
+                </span>
+            </h3>
+            <div>
+                <strong>{% trans "created_at_lbl" %}:</strong> {{ todo.created_at|date:"d.m.Y, H:i" }}
+            </div>
+            <div>
+                <strong>{% trans "updated_at_lbl" %}:</strong> {{ todo.updated_at|date:"d.m.Y, H:i" }}
+            </div>
+        </div>
+        <div class="card-body">
+            <p>
+                {% autoescape off %}
+                    {{ todo.content }}
+                {% endautoescape %}
+            </p>
+        </div>
+        <div class="card-footer">
+            <div class="d-flex justify-content-start align-content-center">
+                <a class="d-block btn btn-primary d-block m-1" href="{% url "todos-index" %}">{% trans "todos_back_to_list_btn" %}</a>
+                <a class="btn btn-primary d-block m-1" href="{% url "todos-update" id=todo.id %}">{% trans "todos_upadate_btn" %}</a>
+                <a class="btn btn-danger d-block m-1" href="{% url "todos-delete" id=todo.id %}">{% trans "todos_delete_btn" %}</a>
+            </div>
+        </div>
+    </div>
+
+{%  endblock %}

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block title %}
     {{ title }}
@@ -6,5 +7,30 @@
 
 
 {% block content %}
+    <a class="btn btn-outline-primary btn-lg mb-3" href="{% url "todos-new" %}">{% trans "todos_new_btn" %}</a>
+
     <h1>{{ title }}</h1>
+    <hr>
+    <div>
+        <h3>All</h3>
+        {% include "todos/partials/_table_list.html" with todos=todos %}
+    </div>
+    <hr>
+    <div>
+        <h3>Done</h3>
+        {% include "todos/partials/_table_list.html" with todos=done_todos %}
+    </div>
+    <hr>
+    <div>
+        <h3>Not Done</h3>
+        {% include "todos/partials/_table_list.html" with todos=not_done_todos %}
+    </div>
+    <hr>
+    <ul>
+        {% for todo in todos %}
+            <li>
+                <a href="{% url "todos-update" id=todo.id %}">{{ todo.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
 {%  endblock %}

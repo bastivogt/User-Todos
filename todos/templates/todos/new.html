@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block css_files %}
+    {{ form.media }}
+{% endblock %}
+
+
+{% block content %}
+    {% include "todos/partials/_new_update_form_card.html" %}
+{%  endblock %}

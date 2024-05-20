@@ -1,0 +1,30 @@
+{% load i18n %}
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead class="table-light">
+        <tr>
+            <th scope="col">{% trans "title_lbl" %}</th>
+            <th scope="col">{% trans "updated_at_lbl" %}</th>
+            <th scope="col">{% trans "todos_table_actions" %}</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for todo in todos %}
+                <tr>
+                    <th scope="row">
+                        {{ todo.title }}
+                    </th>
+                    <td>{{ todo.updated_at|date:"d.m.Y, H:i" }}</td>
+                    <td>
+                        <div class="d-flex justify-content-start align-content-center">
+                            <a class="btn btn-primary btn-sm d-block m-1" href="{% url "todos-detail" id=todo.id %}">{% trans "todos_detail_btn" %}</a>
+                            <a class="btn btn-primary btn-sm d-block m-1" href="{% url "todos-update" id=todo.id %}">{% trans "todos_upadate_btn" %}</a>
+                            <a class="btn {% if todo.done %}btn-success{% else %}btn-warning{% endif %} btn-sm d-block m-1" href="{% url "todos-done" id=todo.id %}">{% if todo.done %}{% trans "todos_done_btn" %}{% else %}{% trans "todos_not_done_btn" %}{% endif %}</a>
+                            <a class="btn btn-danger btn-sm d-block m-1" href="{% url "todos-delete" id=todo.id %}">{% trans "todos_delete_btn" %}</a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
