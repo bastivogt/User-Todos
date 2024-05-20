@@ -14,4 +14,6 @@ urlpatterns = [
 
     path("tags/", tag_views.tag_index, name="todos-tag-index"),
     path("tag/new", tag_views.tag_new, name="todos-tag-new"),
+    path("tag/update/<int:id>", tag_views.tag_update, name="todos-tag-update"),
+    path("tag/delete/<int:id>", tag_views.tag_delete, name="todos-tag-delete"),
 ]

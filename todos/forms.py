@@ -31,7 +31,7 @@ class TodoForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        print(self.instance.user)
+        #print(self.instance.user)
         self.fields["tags"].queryset = models.Tag.objects.filter(user=self.instance.user)
 
 

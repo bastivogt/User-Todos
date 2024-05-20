@@ -15,9 +15,8 @@
                     </th>
                     <td>
                         <div class="d-flex justify-content-start align-content-center">
-                            <a class="btn btn-primary btn-sm d-block m-1" href="#">{% trans "todos_detail_btn" %}</a>
-                            <a class="btn btn-primary btn-sm d-block m-1" href="#">{% trans "todos_upadate_btn" %}</a>
-                            <a class="btn btn-danger btn-sm d-block m-1" href="#">{% trans "todos_delete_btn" %}</a>
+                            <a class="btn btn-primary btn-sm d-block m-1" href="{% url "todos-tag-update" id=tag.id %}">{% trans "todos_upadate_btn" %}</a>
+                            <a class="btn btn-danger btn-sm d-block m-1" href="{% url "todos-tag-delete" id=tag.id %}">{% trans "todos_delete_btn" %}</a>
                         </div>
                     </td>
                 </tr>

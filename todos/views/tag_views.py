@@ -30,12 +30,11 @@ def tag_new(request):
     
     current_user = request.user
 
-    todo = models.Tag(user=current_user)
-    
+    tag = models.Tag(user=current_user)
     
     
     if request.method == "POST":
-        form = forms.TagForm(request.POST, instance=todo)
+        form = forms.TagForm(request.POST, instance=tag)
         
         if form.is_valid():
             form.save()
@@ -49,10 +48,66 @@ def tag_new(request):
 
             
     else:
-        form = forms.TagForm( instance=todo)
+        form = forms.TagForm( instance=tag)
 
     return render(request, "todos/tag/new.html", {
-        "title": _("todos_tag__new_title"),
+        "title": _("todos_tag_new_title"),
         "send_btn_title": _("todos_send_btn_title"),
         "form": form
+    })
+
+
+#update
+def tag_update(request, id):
+    if not request.user.is_authenticated:
+        return helpers.not_auth_redirect()
+    
+    current_user = request.user
+
+    tag = get_object_or_404(models.Tag, id=id, user=current_user)
+    
+    
+    if request.method == "POST":
+        form = forms.TagForm(request.POST, instance=tag)
+        
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, messages.SUCCESS, _("todos_tag_new_success_msg"))
+            url = reverse("todos-tag-index")
+            return HttpResponseRedirect(url)
+        else:
+            messages.add_message(request, messages.SUCCESS, _("todos_tag_new_success_msg"))
+            url = reverse("todos-tag-new")
+            return HttpResponseRedirect(url)
+
+            
+    else:
+        form = forms.TagForm( instance=tag)
+
+    return render(request, "todos/tag/new.html", {
+        "title": _("todos_tag_update_title"),
+        "send_btn_title": _("todos_send_btn_title"),
+        "form": form
+    })
+
+
+#delete
+def tag_delete(request, id):
+    if not request.user.is_authenticated:
+        return helpers.not_auth_redirect()
+    
+    current_user = request.user
+    url = reverse("todos-tag-index")
+    
+    tag = get_object_or_404(models.Tag, id=id, user=current_user)
+
+    if request.method == "POST":
+        tag.delete()
+        messages.add_message(request, messages.ERROR, f'{tag.name}, {_("todos_tag_delete_msg")}')
+        return HttpResponseRedirect(url)
+
+    
+    return render(request, "todos/tag/delete.html", {
+        "title": _("todos_delete_title"),
+        "tag": tag
     })
