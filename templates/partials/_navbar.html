@@ -13,6 +13,11 @@
                     <a class="nav-link{% if "todos" in request.path %} active{% endif %}"{% if "todos" in request.path %} aria-current="page"{% endif %} href="{% url "todos-index" %}">Todos</a>
                 </li>
                 {% endif %}
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link{% if "tag" in request.path %} active{% endif %}"{% if "tag" in request.path %} aria-current="page"{% endif %} href="{% url "todos-tag-index" %}">Tags</a>
+                </li>
+                {% endif %}
             </ul>
             {% if user.is_authenticated %}
                 <span class="navbar-text navbar-dark">{% trans "navbar_user_greeting" %}, {{ user }}!</span>

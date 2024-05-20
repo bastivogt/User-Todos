@@ -1,5 +1,6 @@
 {% extends "base_sidebar.html" %}
 {% load i18n %}
+{% load static %}
 
 {% block title %}
     {{ title }}
@@ -19,17 +20,29 @@
 {% block main %}
     <div>
         <h3>All</h3>
-        {% include "todos/partials/_table_list.html" with todos=todos %}
+        {% if todos %}
+            {% include "todos/todo/partials/_table_list.html" with todos=todos %}
+        {% else %}
+            <p>{% trans "todos_none_todos" %}</p>
+        {% endif %}
     </div>
     <hr>
     <div>
         <h3>Done</h3>
-        {% include "todos/partials/_table_list.html" with todos=done_todos %}
+        {% if done_todos %}
+            {% include "todos/todo/partials/_table_list.html" with todos=done_todos %}
+        {% else %}
+            <p>{% trans "todos_none_todos" %}</p>
+        {% endif %}
     </div>
     <hr>
     <div>
         <h3>Not Done</h3>
-        {% include "todos/partials/_table_list.html" with todos=not_done_todos %}
+        {% if not_done_todos %}
+            {% include "todos/todo/partials/_table_list.html" with todos=not_done_todos %}
+        {% else %}
+            <p>{% trans "todos_none_todos" %}</p>
+        {% endif %}
     </div>
     <hr>
     <ul>
@@ -43,4 +56,34 @@
 
 {% block side %}
     <h3>Sidebar</h3>
+    <div class="card mb-3">
+        <div class="card-header">
+            <h5>
+                {% trans "todos_tag_filter_title" %}
+            </h5>
+        </div>
+        <div class="card-body">
+            {% include "todos/todo/partials/_tag_filter.html" %}
+        </div>
+    </div>
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <h5>
+                {% trans "todos_done_filter_title" %}
+            </h5>
+        </div>
+        <div class="card-body">
+            {% include "todos/todo/partials/_done_filter.html" %}
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <a class="btn btn-primary w-100" href="{% url "todos-index" %}">{% trans "todos_filter_reset_btn" %}</a>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+    <script src="{% static "todos/js/filter.js" %}"></script>
 {% endblock %}

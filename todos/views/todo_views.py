@@ -17,18 +17,49 @@ def index(request):
         return helpers.not_auth_redirect()
     
     current_user = request.user
+    url = reverse("todos-index")
     
     todos = models.Todo.objects.filter(user=current_user)
+
+
+    tags = models.Tag.objects.filter(user=current_user)
+
+    # get params
+    filter_tag = request.GET.get("tag")
+    filter_done = request.GET.get("done")
+    print(f"tag: {filter_tag}")
+    print(f"tag: {filter_done}")
+
+    #filter
+    #tag
+    if filter_tag != None and filter_tag != "all":
+        try:
+            todos = todos.filter(tags__id=int(filter_tag))
+        except:
+            return HttpResponseRedirect(url)
+        
+    #done
+    if filter_done != None and filter_done != "all":
+        try:
+            if filter_done == "true":
+                todos = todos.filter(done=True)
+            elif filter_done == "false":
+                todos = todos.filter(done=False)
+        except:
+            return HttpResponseRedirect(url)
+
+    
+
     done_todos = todos.filter(done=True)
     not_done_todos = todos.filter(done=False)
-    
 
 
     return render(request, "todos/todo/index.html", {
         "title": _("todos_index_title"),
         "todos": todos,
         "done_todos": done_todos,
-        "not_done_todos": not_done_todos
+        "not_done_todos": not_done_todos,
+        "tags": tags
     })
 
 
@@ -42,8 +73,11 @@ def new(request):
 
     todo = models.Todo(user=current_user)
     
+    
+    
     if request.method == "POST":
-        form = forms.TodoForm(request.POST, instance=todo)
+        form = forms.TodoForm(request.POST, request=request, instance=todo)
+        
         if form.is_valid():
             form.save()
             messages.add_message(request, messages.SUCCESS, _("todos_new_success_msg"))
@@ -56,7 +90,7 @@ def new(request):
 
             
     else:
-        form = forms.TodoForm(instance=todo)
+        form = forms.TodoForm(request=request, instance=todo)
 
     return render(request, "todos/todo/new.html", {
         "title": _("todos_new_title"),
@@ -76,7 +110,7 @@ def update(request, id):
 
     
     if request.method == "POST":
-        form = forms.TodoForm(request.POST, instance=todo)
+        form = forms.TodoForm(request.POST, instance=todo, request=request)
         if form.is_valid():
             form.save()
             messages.add_message(request, messages.SUCCESS, _("todos_new_success_msg"))
@@ -89,7 +123,7 @@ def update(request, id):
 
             
     else:
-        form = forms.TodoForm(instance=todo)
+        form = forms.TodoForm(instance=todo, request=request)
 
     return render(request, "todos/todo/new.html", {
         "title": f"{todo.title}",
