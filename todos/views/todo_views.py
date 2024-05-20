@@ -11,6 +11,13 @@ from todos import models
 
 # Create your views here.
 
+def redirect_to_todos(request):
+    if not request.user.is_authenticated:
+        return helpers.not_auth_redirect()
+    
+    url = reverse("todos-index")
+    return HttpResponseRedirect(url)
+
 # index
 def index(request):
     if not request.user.is_authenticated:

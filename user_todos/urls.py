@@ -21,13 +21,18 @@ from django.urls import path, include
 from django.views.generic import RedirectView
 
 from django.urls import reverse
+from todos.views import todo_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('tinymce/', include('tinymce.urls')),
 
+    #path("", RedirectView.as_view(url="todos/"), name="index"),
 
-    path("", include("todos.urls")),
+    path("", todo_views.redirect_to_todos, name="index"),
+
+
+    path("todos/", include("todos.urls")),
     path("sevo-auth/", include("sevo_auth.urls")),
 ]
