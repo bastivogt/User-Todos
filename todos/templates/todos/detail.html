@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block title %}
-    {{ title }}
+    {{ todo.title }}
 {% endblock %}
 
 
@@ -10,7 +10,7 @@
     <div class="card">
         <div class="card-header">
             <h3>{{ todo.title }}
-                <span class="badge {% if todo.done %}text-bg-success{% else %}text-bg-warning{% endif %}">
+                <span class="badge rounded-pill {% if todo.done %}text-bg-success{% else %}text-bg-warning{% endif %}">
                     {% if todo.done %}
                         {% trans "todos_done_btn" %}
                     {% else %}
