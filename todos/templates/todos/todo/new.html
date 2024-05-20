@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_main.html" %}
 {% load i18n %}
 
 {% block title %}
@@ -10,6 +10,6 @@
 {% endblock %}
 
 
-{% block content %}
+{% block main %}
     {% include "todos/partials/_new_update_form_card.html" %}
 {%  endblock %}

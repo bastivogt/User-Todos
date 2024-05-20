@@ -4,9 +4,9 @@ from django.http import HttpResponseRedirect, Http404
 from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
 
-from . import helpers
-from . import forms
-from . import models
+from todos import helpers
+from todos import forms
+from todos import models
 
 
 # Create your views here.
@@ -24,7 +24,7 @@ def index(request):
     
 
 
-    return render(request, "todos/index.html", {
+    return render(request, "todos/todo/index.html", {
         "title": _("todos_index_title"),
         "todos": todos,
         "done_todos": done_todos,
@@ -58,7 +58,7 @@ def new(request):
     else:
         form = forms.TodoForm(instance=todo)
 
-    return render(request, "todos/new.html", {
+    return render(request, "todos/todo/new.html", {
         "title": _("todos_new_title"),
         "send_btn_title": _("todos_send_btn_title"),
         "form": form
@@ -91,7 +91,7 @@ def update(request, id):
     else:
         form = forms.TodoForm(instance=todo)
 
-    return render(request, "todos/new.html", {
+    return render(request, "todos/todo/new.html", {
         "title": f"{todo.title}",
         "send_btn_title": _("todos_send_btn_title"),
         "form": form
@@ -128,7 +128,7 @@ def detail(request, id):
     
     todo = get_object_or_404(models.Todo, id=id, user=current_user)
     
-    return render(request, "todos/detail.html", {
+    return render(request, "todos/todo/detail.html", {
         "title": _("todos_detail_title"),
         "todo": todo
     })
@@ -150,7 +150,7 @@ def delete(request, id):
 
 
     
-    return render(request, "todos/delete.html", {
+    return render(request, "todos/todo/delete.html", {
         "title": _("todos_delete_title"),
         "todo": todo
     })

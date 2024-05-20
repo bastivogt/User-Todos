@@ -12,6 +12,7 @@ class TodoForm(forms.ModelForm):
         labels = {
             "title": _("title_lbl"),
             "content": _("content_lbl"),
+            "tags": _("tags_slt"), 
             "done": _("done_lbl"),
             "created_at": _("created_at_lbl"),
             "updated_at": _("updated_at_lbl")
@@ -20,5 +21,6 @@ class TodoForm(forms.ModelForm):
             "user": forms.HiddenInput(),
             "title": forms.TextInput(attrs={"class": "form-control"}),
             "content": TinyMCE(attrs={"cols": 80, "rows": 30, "class": "form-control"}),
+            "tags": forms.SelectMultiple(attrs={"class": "form-select multiple"}),
             "done": forms.CheckboxInput(attrs={"class": "form-check-input"})
         }
