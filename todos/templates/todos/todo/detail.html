@@ -11,11 +11,7 @@
         <div class="card-header">
             <h3>{{ todo.title }}
                 <span class="badge rounded-pill {% if todo.done %}text-bg-success{% else %}text-bg-warning{% endif %}">
-                    {% if todo.done %}
-                        {% trans "todos_done_btn" %}
-                    {% else %}
-                        {% trans "todos_not_done_btn" %}
-                    {% endif %}
+                    <i class="demo-icon icon-check"></i>
                 </span>
             </h3>
             <div>
@@ -23,6 +19,10 @@
             </div>
             <div>
                 <strong>{% trans "updated_at_lbl" %}:</strong> {{ todo.updated_at|date:"d.m.Y, H:i" }}
+            </div>
+            <div>
+                <strong>Tags:</strong>
+                {{ todo.get_tags_str}}
             </div>
         </div>
         <div class="card-body">
@@ -34,9 +34,9 @@
         </div>
         <div class="card-footer">
             <div class="d-flex justify-content-start align-content-center">
-                <a class="d-block btn btn-primary d-block m-1" href="{% url "todos-index" %}">{% trans "todos_back_to_list_btn" %}</a>
-                <a class="btn btn-primary d-block m-1" href="{% url "todos-update" id=todo.id %}">{% trans "todos_upadate_btn" %}</a>
-                <a class="btn btn-danger d-block m-1" href="{% url "todos-delete" id=todo.id %}">{% trans "todos_delete_btn" %}</a>
+                <a class="d-block btn btn-primary d-block m-1" href="{% url "todos-index" %}"><i class="demo-icon icon-home"></i></a>
+                <a class="btn btn-primary d-block m-1" href="{% url "todos-update" id=todo.id %}"><i class="demo-icon icon-pencil"></i></a>
+                <a class="btn btn-danger d-block m-1" href="{% url "todos-delete" id=todo.id %}"><i class="demo-icon icon-trash"></i></a>
             </div>
         </div>
     </div>

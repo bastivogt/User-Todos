@@ -37,9 +37,16 @@ class Todo(models.Model):
         ordering = ["-updated_at"]
 
 
-    @admin.display(description="Tags")
+    @admin.display(description="Tags by user")
     def get_tags_by_user_str(self, user):
         tags = self.tags.all().filter(user=user)
+        tags_list = [tag.name for tag in tags]
+        return ", ".join(tags_list)
+    
+
+
+    def get_tags_str(self):
+        tags = self.tags.all()
         tags_list = [tag.name for tag in tags]
         return ", ".join(tags_list)
 

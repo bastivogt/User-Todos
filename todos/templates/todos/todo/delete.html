@@ -12,11 +12,7 @@
             <h3>
                 {{ todo.title }}
                 <span class="badge {% if todo.done %}text-bg-success{% else %}text-bg-warning{% endif %}">
-                    {% if todo.done %}
-                        {% trans "todos_done_btn" %}
-                    {% else %}
-                        {% trans "todos_not_done_btn" %}
-                    {% endif %}
+                    <i class="demo-icon icon-check"></i>
                 </span>
             </h3>
         </div>
@@ -27,8 +23,8 @@
             <form action="" method="POST">
                 {% csrf_token %}
                 <div class="d-flex justify-content-start align-content-center">
-                    <button class="btn btn-danger b-block m-1">{% trans "todos_delete_btn" %}</button>
-                    <button type="button" class="btn btn-primary back-link m-1">{% trans "back_link" %}</button>
+                    <button class="btn btn-danger b-block m-1"><i class="demo-icon icon-trash"></i></button>
+                    <button type="button" class="btn btn-primary back-link m-1"><i class="demo-icon icon-back"></i></button>
                 </div>
             </form>
         </div>

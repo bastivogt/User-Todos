@@ -122,7 +122,7 @@ def update(request, id):
         if form.is_valid():
             form.save()
             messages.add_message(request, messages.SUCCESS, _("todos_new_success_msg"))
-            url = reverse("todos-index")
+            url = reverse("todos-detail", args=[id])
             return HttpResponseRedirect(url)
         else:
             messages.add_message(request, messages.SUCCESS, _("todos_new_success_msg"))
