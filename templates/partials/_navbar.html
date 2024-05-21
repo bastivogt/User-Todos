@@ -25,13 +25,13 @@
             <ul class="navbar-nav mb-2 mb-lg-0">
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url "sevo-auth-logout" %}">Logout</a>
+                        <a class="nav-link" href="{% url "sevo-auth-logout" %}"><i class="demo-icon icon-logout"></i></a>
 
 
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link {% if "login" in request.path %} active{% endif %}"{% if "members" in request.path %} aria-current="page"{% endif %} href="{% url "sevo-auth-login" %}">Login</a>
+                        <a class="nav-link {% if "login" in request.path %} active{% endif %}"{% if "members" in request.path %} aria-current="page"{% endif %} href="{% url "sevo-auth-login" %}"><i class="demo-icon icon-user"></i></a>
                     </li>
                 {% endif %}
 
