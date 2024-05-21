@@ -2,11 +2,11 @@
 <div>
     <ul>
         <li>
-            <button class="btn btn-link p-0" type="button" data-filter-key="tag" data-filter-value="all">{% trans "todos_filter_all_link" %}</button>
+            <button class="btn btn-link p-0 text-start" type="button" data-filter-key="tag" data-filter-value="all">{% trans "todos_filter_all_link" %}</button>
         </li>
     {% for tag in tags %}
         <li>
-            <button class="btn btn-link p-0" type="button" data-filter-key="tag" data-filter-value="{{ tag.id }}">{{ tag.name }}</button>
+            <button class="btn btn-link p-0 text-start" type="button" data-filter-key="tag" data-filter-value="{{ tag.id }}">{{ tag.name }}</button>
         </li>
     {% endfor %}
 </div>

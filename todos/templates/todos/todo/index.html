@@ -19,78 +19,53 @@
 
 {% block main %}
     <div>
-        <h3>All</h3>
         {% if todos %}
             {% include "todos/todo/partials/_table_list.html" with todos=todos %}
         {% else %}
             <p>{% trans "todos_none_todos" %}</p>
         {% endif %}
     </div>
-    <hr>
-    <div>
-        <h3>Done</h3>
-        {% if done_todos %}
-            {% include "todos/todo/partials/_table_list.html" with todos=done_todos %}
-        {% else %}
-            <p>{% trans "todos_none_todos" %}</p>
-        {% endif %}
-    </div>
-    <hr>
-    <div>
-        <h3>Not Done</h3>
-        {% if not_done_todos %}
-            {% include "todos/todo/partials/_table_list.html" with todos=not_done_todos %}
-        {% else %}
-            <p>{% trans "todos_none_todos" %}</p>
-        {% endif %}
-    </div>
-    <hr>
-    <ul>
-        {% for todo in todos %}
-            <li>
-                <a href="{% url "todos-update" id=todo.id %}">{{ todo.title }}</a>
-            </li>
-        {% endfor %}
-    </ul>
+
 {%  endblock %}
 
 {% block side %}
-    <h3>Sidebar</h3>
-    <div class="card mb-3">
-        <div class="card-header">
-            <h5>
-                {% trans "todos_tag_filter_title" %}
-            </h5>
+    <div id="filter-section">
+        <div class="card mb-3">
+            <div class="card-header">
+                <h5>
+                    {% trans "todos_tag_filter_title" %}
+                </h5>
+            </div>
+            <div class="card-body">
+                {% include "todos/todo/partials/_tag_filter.html" %}
+            </div>
         </div>
-        <div class="card-body">
-            {% include "todos/todo/partials/_tag_filter.html" %}
-        </div>
-    </div>
 
-    <div class="card mb-3">
-        <div class="card-header">
-            <h5>
-                {% trans "todos_done_filter_title" %}
-            </h5>
+        <div class="card mb-3">
+            <div class="card-header">
+                <h5>
+                    {% trans "todos_done_filter_title" %}
+                </h5>
+            </div>
+            <div class="card-body">
+                {% include "todos/todo/partials/_done_filter.html" %}
+            </div>
         </div>
-        <div class="card-body">
-            {% include "todos/todo/partials/_done_filter.html" %}
-        </div>
-    </div>
 
-    <div class="card mb-3">
-        <div class="card-header">
-            <h5>
-                {% trans "todos_ordering_filter_title" %}
-            </h5>
+        <div class="card mb-3">
+            <div class="card-header">
+                <h5>
+                    {% trans "todos_ordering_filter_title" %}
+                </h5>
+            </div>
+            <div class="card-body">
+                {% include "todos/todo/partials/_ordering_filter.html" %}
+            </div>
         </div>
-        <div class="card-body">
-            {% include "todos/todo/partials/_ordering_filter.html" %}
-        </div>
-    </div>
 
-    <div class="mb-3">
-        <a class="btn btn-primary w-100" href="{% url "todos-index" %}"><i class="demo-icon icon-arrows-ccw"></i></a>
+        <div class="mb-3">
+            <a class="btn btn-primary w-100" href="{% url "todos-index" %}"><i class="demo-icon icon-arrows-ccw"></i></a>
+        </div>
     </div>
 
 {% endblock %}

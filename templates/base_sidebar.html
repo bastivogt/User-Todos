@@ -6,12 +6,14 @@
     </header>
     <div class="container py-5">
         <div class="row">
-            <aside class="col-lg-3 order-lg-2">
-                {% block side %}{% endblock %}
-            </aside>
-            <main class="col-lg-9 order-lg-1">
+
+            <main class="col-lg-9 order-lg-2">
                 {% block main %}{% endblock %}
             </main>
+            <aside class="col-lg-3 order-lg-1">
+                {% block side %}{% endblock %}
+            </aside>
+
         </div>
     </div>
 {% endblock %}
