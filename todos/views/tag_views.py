@@ -42,9 +42,8 @@ def tag_new(request):
             url = reverse("todos-tag-index")
             return HttpResponseRedirect(url)
         else:
-            messages.add_message(request, messages.SUCCESS, _("todos_tag_new_success_msg"))
-            url = reverse("todos-tag-new")
-            return HttpResponseRedirect(url)
+            messages.add_message(request, messages.ERROR, _("todos_tag_new_error_msg"))
+
 
             
     else:
@@ -72,13 +71,12 @@ def tag_update(request, id):
         
         if form.is_valid():
             form.save()
-            messages.add_message(request, messages.SUCCESS, _("todos_tag_new_success_msg"))
+            messages.add_message(request, messages.SUCCESS, _("todos_tag_update_success_msg"))
             url = reverse("todos-tag-index")
             return HttpResponseRedirect(url)
         else:
-            messages.add_message(request, messages.SUCCESS, _("todos_tag_new_success_msg"))
-            url = reverse("todos-tag-new")
-            return HttpResponseRedirect(url)
+            messages.add_message(request, messages.ERROR, _("todos_tag_update_error_msg"))
+
 
             
     else:

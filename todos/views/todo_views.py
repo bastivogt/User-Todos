@@ -91,9 +91,8 @@ def new(request):
             url = reverse("todos-index")
             return HttpResponseRedirect(url)
         else:
-            messages.add_message(request, messages.SUCCESS, _("todos_new_success_msg"))
-            url = reverse("todos-new")
-            return HttpResponseRedirect(url)
+            messages.add_message(request, messages.ERROR, _("todos_new_error_msg"))
+
 
             
     else:
@@ -125,9 +124,8 @@ def update(request, id):
             url = reverse("todos-detail", args=[id])
             return HttpResponseRedirect(url)
         else:
-            messages.add_message(request, messages.SUCCESS, _("todos_new_success_msg"))
-            url = reverse("todos-new")
-            return HttpResponseRedirect(url)
+            messages.add_message(request, messages.ERROR, _("todos_new_error_msg"))
+
 
             
     else:
