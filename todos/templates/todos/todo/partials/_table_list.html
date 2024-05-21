@@ -4,6 +4,7 @@
         <thead class="table-light">
         <tr>
             <th scope="col">{% trans "title_lbl" %}</th>
+            <th scope="col">{% trans "created_at_lbl" %}</th>
             <th scope="col">{% trans "updated_at_lbl" %}</th>
             <th scope="col">{% trans "todos_table_actions" %}</th>
         </tr>
@@ -11,12 +12,13 @@
         <tbody>
             {% for todo in todos %}
                 <tr>
-                    <th scope="row" class="w-75">
+                    <th scope="row" class="w-50">
                         {{ todo.title }}
                     </th>
-                    <td class="w-25">{{ todo.updated_at|date:"d.m.Y, H:i" }}</td>
+                    <td class="w-25"><time><small><i>{{ todo.created_at|date:"d.m.Y, H:i" }}</i></small></time></td>
+                    <td class="w-25"><time><small><i>{{ todo.updated_at|date:"d.m.Y, H:i" }}</i></small></time></td>
                     <td class="w-auto">
-                        <div class="d-flex justify-content-start align-content-center">
+                        <div class="d-flex justify-content-center align-content-center">
                             <a class="btn btn-primary btn-sm d-block m-1" href="{% url "todos-detail" id=todo.id %}"><i class="demo-icon icon-info"></i></a>
                             <a class="btn btn-primary btn-sm d-block m-1" href="{% url "todos-update" id=todo.id %}"><i class="demo-icon icon-pencil"></i></a>
                             <a class="btn {% if todo.done %}btn-success{% else %}btn-warning{% endif %} btn-sm d-block m-1" href="{% url "todos-done" id=todo.id %}"><i class="demo-icon icon-check"></i></a>
