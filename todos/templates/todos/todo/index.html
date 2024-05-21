@@ -78,6 +78,17 @@
         </div>
     </div>
 
+    <div class="card mb-3">
+        <div class="card-header">
+            <h5>
+                {% trans "todos_ordering_filter_title" %}
+            </h5>
+        </div>
+        <div class="card-body">
+            {% include "todos/todo/partials/_ordering_filter.html" %}
+        </div>
+    </div>
+
     <div class="mb-3">
         <a class="btn btn-primary w-100" href="{% url "todos-index" %}"><i class="demo-icon icon-arrows-ccw"></i></a>
     </div>

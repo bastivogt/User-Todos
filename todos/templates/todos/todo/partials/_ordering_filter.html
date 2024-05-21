@@ -1,0 +1,16 @@
+{% load i18n %}
+<div>
+    <ul>
+        <li>
+            <button class="btn btn-link p-0" type="button" data-filter-key="order" data-filter-value="created_at_asc">{% trans "todos_ordering_created_at_asc" %}</button>
+        </li>
+        <li>
+            <button class="btn btn-link p-0" type="button" data-filter-key="order" data-filter-value="created_at_desc">{% trans "todos_ordering_created_at_desc" %}</button>
+        </li>
+        <li>
+            <button class="btn btn-link p-0" type="button" data-filter-key="order" data-filter-value="updated_at_asc">{% trans "todos_ordering_updated_at_asc" %}</button>
+        </li>
+        <li>
+            <button class="btn btn-link p-0" type="button" data-filter-key="order" data-filter-value="updated_at_desc">{% trans "todos_ordering_updated_at_desc" %}</button>
+        </li>
+</div>

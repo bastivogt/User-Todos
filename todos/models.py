@@ -34,7 +34,8 @@ class Todo(models.Model):
 
 
     class Meta:
-        ordering = ["-updated_at"]
+        #ordering = ["-updated_at"]
+        pass
 
 
     @admin.display(description="Tags by user")
