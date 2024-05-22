@@ -3,15 +3,14 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from todos import models
 from todos import helpers
 from todos import forms
 
-
+@login_required(login_url="sevo-auth-login")
 def tag_index(request):
-    if not request.user.is_authenticated:
-        return helpers.not_auth_redirect()
     
     tags = models.Tag.objects.all()
     current_user = request.user
@@ -24,9 +23,8 @@ def tag_index(request):
 
 
 # new
+@login_required(login_url="sevo-auth-login")
 def tag_new(request):
-    if not request.user.is_authenticated:
-        return helpers.not_auth_redirect()
     
     current_user = request.user
 
@@ -57,9 +55,8 @@ def tag_new(request):
 
 
 #update
+@login_required(login_url="sevo-auth-login")
 def tag_update(request, id):
-    if not request.user.is_authenticated:
-        return helpers.not_auth_redirect()
     
     current_user = request.user
 
@@ -90,9 +87,8 @@ def tag_update(request, id):
 
 
 #delete
+@login_required(login_url="sevo-auth-login")
 def tag_delete(request, id):
-    if not request.user.is_authenticated:
-        return helpers.not_auth_redirect()
     
     current_user = request.user
     url = reverse("todos-tag-index")

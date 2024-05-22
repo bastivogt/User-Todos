@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect, Http404
 from django.utils.translation import gettext_lazy as _
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from todos import helpers
 from todos import forms
@@ -20,9 +21,10 @@ def redirect_to_todos(request):
     return HttpResponseRedirect(url)
 
 # index
+@login_required(login_url="sevo-auth-login")
 def index(request):
-    if not request.user.is_authenticated:
-        return helpers.not_auth_redirect()
+    # if not request.user.is_authenticated:
+    #     return helpers.not_auth_redirect()
     
     current_user = request.user
     url = reverse("todos-index")
@@ -34,7 +36,7 @@ def index(request):
     print(f"tag: {filter_tag}")
     print(f"done: {filter_done}")
     print(f"order: {filter_order}")
-    order_str = "created_at"
+    order_str = "-created_at"
 
     #order
     if filter_order != None:
@@ -89,10 +91,8 @@ def index(request):
 
 
 # new
+@login_required(login_url="sevo-auth-login")
 def new(request):
-    if not request.user.is_authenticated:
-        return helpers.not_auth_redirect()
-    
     current_user = request.user
 
     todo = models.Todo(user=current_user)
@@ -123,9 +123,8 @@ def new(request):
 
 
 # update
+@login_required(login_url="sevo-auth-login")
 def update(request, id):
-    if not request.user.is_authenticated:
-        return helpers.not_auth_redirect()
     
     current_user = request.user
 
@@ -156,9 +155,8 @@ def update(request, id):
 
 
 # done
+@login_required(login_url="sevo-auth-login")
 def done(request, id):
-    if not request.user.is_authenticated:
-        return helpers.not_auth_redirect()
     current_user = request.user
     todo = get_object_or_404(models.Todo, id=id, user=current_user)
     msg_done = f'{todo.title}: {_("todos_done_msg_done")}'
@@ -177,10 +175,8 @@ def done(request, id):
 
 
 # detail
+@login_required(login_url="sevo-auth-login")
 def detail(request, id):
-    if not request.user.is_authenticated:
-        return helpers.not_auth_redirect()
-    
     current_user = request.user
     
     todo = get_object_or_404(models.Todo, id=id, user=current_user)
@@ -192,9 +188,8 @@ def detail(request, id):
 
 
 # delete
+@login_required(login_url="sevo-auth-login")
 def delete(request, id):
-    if not request.user.is_authenticated:
-        return helpers.not_auth_redirect()
     
     current_user = request.user
     todo = get_object_or_404(models.Todo, id=id, user=current_user)

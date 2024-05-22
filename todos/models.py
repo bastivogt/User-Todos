@@ -34,7 +34,7 @@ class Todo(models.Model):
 
 
     class Meta:
-        #ordering = ["-updated_at"]
+        ordering = ["-created_at"]
         pass
 
 
