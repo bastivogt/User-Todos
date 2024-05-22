@@ -115,7 +115,8 @@ def sign_up(request):
 @login_required(login_url="sevo-auth-login")
 def user_detail(request):
     current_user = request.user
-    greeting = f"Hello, {current_user.username}!"
+    greeting_word = _("sevo_auth_user_detail_greeting")
+    greeting = f"{greeting_word}, {current_user.username}!"
     return render(request, "sevo_auth/user_detail.html", {
         "greeting": greeting,
         "user": current_user

@@ -29,8 +29,9 @@ class SevoLoginForm(forms.Form):
 
 
 class SevoSignUpForm(forms.Form):
-    email = forms.CharField(max_length=255, widget=forms.EmailInput, label=_("sevo_auth_email_lbl"))
     username = forms.CharField(max_length=255, label=_("sevo_auth_username_lbl"))
+    email = forms.CharField(max_length=255, widget=forms.EmailInput, label=_("sevo_auth_email_lbl"))
+
     password = forms.CharField(label=_("sevo_auth_password_lbl"), widget=forms.PasswordInput)
     password_confirm = forms.CharField(label=_("sevo_auth_password_confirm_lbl"), widget=forms.PasswordInput)
 
@@ -47,8 +48,8 @@ class SevoSignUpForm(forms.Form):
 
 
 class SevoChangePasswordForm(forms.Form):
-    password = forms.CharField(label=_("sevo_auth_password_lbl"), widget=forms.PasswordInput)
-    password_confirm = forms.CharField(label=_("sevo_auth_password_confirm_lbl"), widget=forms.PasswordInput)
+    password = forms.CharField(label=_("sevo_auth_new_password_lbl"), widget=forms.PasswordInput,)
+    password_confirm = forms.CharField(label=_("sevo_auth_new_password_confirm_lbl"), widget=forms.PasswordInput)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -57,8 +58,8 @@ class SevoChangePasswordForm(forms.Form):
 
 
 class SevoChangeUserDataForm(forms.Form):
-    email = forms.CharField(max_length=255, widget=forms.EmailInput, label=_("sevo_auth_email_lbl"))
     username = forms.CharField(max_length=255, label=_("sevo_auth_username_lbl"))
+    email = forms.CharField(max_length=255, widget=forms.EmailInput, label=_("sevo_auth_email_lbl"))
     password = forms.CharField(label=_("sevo_auth_password_lbl"), widget=forms.PasswordInput)
 
 

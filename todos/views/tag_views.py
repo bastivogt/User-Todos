@@ -97,7 +97,8 @@ def tag_delete(request, id):
 
     if request.method == "POST":
         tag.delete()
-        messages.add_message(request, messages.ERROR, f'{tag.name}, {_("todos_tag_delete_msg")}')
+        delete_msg = _("todos_tag_delete_msg")
+        messages.add_message(request, messages.ERROR, f'{tag.name}, {delete_msg}')
         return HttpResponseRedirect(url)
 
     

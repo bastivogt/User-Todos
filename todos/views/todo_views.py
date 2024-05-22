@@ -136,11 +136,11 @@ def update(request, id):
         form = forms.TodoForm(request.POST, instance=todo)
         if form.is_valid():
             form.save()
-            messages.add_message(request, messages.SUCCESS, _("todos_new_success_msg"))
+            messages.add_message(request, messages.SUCCESS, _("todos_update_success_msg"))
             url = reverse("todos-detail", args=[id])
             return HttpResponseRedirect(url)
         else:
-            messages.add_message(request, messages.ERROR, _("todos_new_error_msg"))
+            messages.add_message(request, messages.ERROR, _("todos_update_error_msg"))
 
 
             
@@ -159,16 +159,18 @@ def update(request, id):
 def done(request, id):
     current_user = request.user
     todo = get_object_or_404(models.Todo, id=id, user=current_user)
-    msg_done = f'{todo.title}: {_("todos_done_msg_done")}'
-    msg_not_done = f'{todo.title}: {_("todos_done_msg_not_done")}'
+    msg_done = _("todos_done_msg_done")
+    msg_not_done = _("todos_done_msg_not_done")
+    msg_done_full = f'{todo.title}: {msg_done}'
+    msg_not_done_full = f'{todo.title}: {msg_not_done}'
 
     todo.done = not todo.done
     todo.save()
 
     if todo.done:
-        messages.add_message(request, messages.SUCCESS, msg_done)
+        messages.add_message(request, messages.SUCCESS, msg_done_full)
     else:
-        messages.add_message(request, messages.WARNING, msg_not_done) 
+        messages.add_message(request, messages.WARNING, msg_not_done_full) 
     url = reverse("todos-index")
     return HttpResponseRedirect(url)
 
@@ -196,7 +198,8 @@ def delete(request, id):
 
     if request.method == "POST":
         todo.delete()
-        messages.add_message(request, messages.ERROR, f'{todo.title}, {_("todos_delete_msg")}')
+        delete_msg = _("todos_delete_msg")
+        messages.add_message(request, messages.ERROR, f'{todo.title}, {delete_msg}')
         url = reverse("todos-index")
         return HttpResponseRedirect(url)
 
