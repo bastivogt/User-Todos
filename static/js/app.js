@@ -31,6 +31,6 @@ function autoHideMessageAlertsAll(time, alerts) {
 document.addEventListener("DOMContentLoaded", (e) => {
     console.log("Hello world!");
     doBackLink();
-    autoHideMessageAlertsAll(2000, elements.messageAlerts);
+    // autoHideMessageAlertsAll(2000, elements.messageAlerts);
 
 });

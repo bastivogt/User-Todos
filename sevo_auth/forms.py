@@ -17,8 +17,8 @@ from . import models
 
 
 class SevoLoginForm(forms.Form):
-    username = forms.CharField(max_length=255, label=_("username_lbl"))
-    password = forms.CharField(label=_("password_lbl"), widget=forms.PasswordInput)
+    username = forms.CharField(max_length=255, label=_("sevo_auth_username_lbl"))
+    password = forms.CharField(label=_("sevo_auth_password_lbl"), widget=forms.PasswordInput)
 
 
     def __init__(self, *args, **kwargs):
@@ -29,12 +29,44 @@ class SevoLoginForm(forms.Form):
 
 
 class SevoSignUpForm(forms.Form):
-    email = forms.CharField(max_length=255, widget=forms.EmailInput)
-    username = forms.CharField(max_length=255, label=_("username_lbl"))
-    password = forms.CharField(label=_("password_lbl"), widget=forms.PasswordInput)
+    email = forms.CharField(max_length=255, widget=forms.EmailInput, label=_("sevo_auth_email_lbl"))
+    username = forms.CharField(max_length=255, label=_("sevo_auth_username_lbl"))
+    password = forms.CharField(label=_("sevo_auth_password_lbl"), widget=forms.PasswordInput)
+    password_confirm = forms.CharField(label=_("sevo_auth_password_confirm_lbl"), widget=forms.PasswordInput)
+
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["email"].widget.attrs["class"] = "form-control"
         self.fields["username"].widget.attrs["class"] = "form-control"
         self.fields["password"].widget.attrs["class"] = "form-control"
+        self.fields["password_confirm"].widget.attrs["class"] = "form-control"
+
+
+
+
+
+class SevoChangePasswordForm(forms.Form):
+    password = forms.CharField(label=_("sevo_auth_password_lbl"), widget=forms.PasswordInput)
+    password_confirm = forms.CharField(label=_("sevo_auth_password_confirm_lbl"), widget=forms.PasswordInput)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["password"].widget.attrs["class"] = "form-control"
+        self.fields["password_confirm"].widget.attrs["class"] = "form-control"
+
+
+class SevoChangeUserDataForm(forms.Form):
+    email = forms.CharField(max_length=255, widget=forms.EmailInput, label=_("sevo_auth_email_lbl"))
+    username = forms.CharField(max_length=255, label=_("sevo_auth_username_lbl"))
+    password = forms.CharField(label=_("sevo_auth_password_lbl"), widget=forms.PasswordInput)
+
+
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["email"].widget.attrs["class"] = "form-control"
+        self.fields["username"].widget.attrs["class"] = "form-control"
+        self.fields["password"].widget.attrs["class"] = "form-control"
+
+
