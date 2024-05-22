@@ -17,6 +17,12 @@
 {% endblock %}
 
 {% block main %}
-    {% include "todos/tag/partials/_table_list.html" %}
+    <div>
+        {% if tags %}
+            {% include "todos/tag/partials/_table_list.html" %}
+        {% else %}
+            {% trans "todos_tags_none_tags" %}
+        {% endif %}
+    </div>
 {%  endblock %}
 
