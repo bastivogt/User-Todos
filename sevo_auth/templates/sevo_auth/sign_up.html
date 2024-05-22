@@ -15,7 +15,7 @@
         {% else %}
             <form action="" method="POST">
                 {% csrf_token %}
-                <div class="card">
+                <div class="card" style="max-width: 500px;">
                     <div class="card-header">
                         <h3>{{ title }}</h3>
                     </div>
@@ -31,11 +31,11 @@
                                 {% endif %}
                             </div>
                         {% endfor %}
-                        <button class="btn btn-primary">{% trans "sevo_auth_login_btn" %}</button>
+                        <button class="btn btn-primary">{% trans "sevo_auth_sign_up_btn" %}</button>
                     </div>
                 </div>
             </form>
-            <a class="d-inline-block mt-3" href="{% url "sevo-auth-sign-up" %}">{% trans "sevo_auth_sign_up_link" %}</a>
+            <a class="mt-3 d-inline-block" href="{% url "sevo-auth-login" %}">{% trans "sevo_auth_login_link" %}</a>
         {% endif %}
     </div>
 {% endblock %}

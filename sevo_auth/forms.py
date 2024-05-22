@@ -26,3 +26,15 @@ class SevoLoginForm(forms.Form):
         self.fields["username"].widget.attrs["class"] = "form-control"
         self.fields["password"].widget.attrs["class"] = "form-control"
 
+
+
+class SevoSignUpForm(forms.Form):
+    email = forms.CharField(max_length=255, widget=forms.EmailInput)
+    username = forms.CharField(max_length=255, label=_("username_lbl"))
+    password = forms.CharField(label=_("password_lbl"), widget=forms.PasswordInput)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["email"].widget.attrs["class"] = "form-control"
+        self.fields["username"].widget.attrs["class"] = "form-control"
+        self.fields["password"].widget.attrs["class"] = "form-control"
