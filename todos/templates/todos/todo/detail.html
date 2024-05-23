@@ -15,13 +15,13 @@
                 </span>
             </h3>
             <div>
-                <strong>{% trans "created_at_lbl" %}:</strong> {{ todo.created_at|date:"d.m.Y, H:i" }}
+                <strong>{% trans "Created at" %}:</strong> {{ todo.created_at|date:"d.m.Y, H:i" }}
             </div>
             <div>
-                <strong>{% trans "updated_at_lbl" %}:</strong> {{ todo.updated_at|date:"d.m.Y, H:i" }}
+                <strong>{% trans "Updated at" %}:</strong> {{ todo.updated_at|date:"d.m.Y, H:i" }}
             </div>
             <div>
-                <strong>Tags:</strong>
+                <strong>{% trans "Tags" %}:</strong>
                 {{ todo.get_tags_str}}
             </div>
         </div>

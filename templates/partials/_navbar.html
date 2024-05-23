@@ -10,19 +10,19 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link{% if "todos" in request.path %} active{% endif %}"{% if "todos" in request.path %} aria-current="page"{% endif %} href="{% url "todos-index" %}">Todos</a>
+                    <a class="nav-link{% if "todos" in request.path %} active{% endif %}"{% if "todos" in request.path %} aria-current="page"{% endif %} href="{% url "todos-index" %}">{% trans "Todos" %}</a>
                 </li>
                 {% endif %}
                 {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link{% if "tag" in request.path %} active{% endif %}"{% if "tag" in request.path %} aria-current="page"{% endif %} href="{% url "todos-tag-index" %}">Tags</a>
+                    <a class="nav-link{% if "tag" in request.path %} active{% endif %}"{% if "tag" in request.path %} aria-current="page"{% endif %} href="{% url "todos-tag-index" %}">{% trans "Tags" %}</a>
                 </li>
                 {% endif %}
             </ul>
             <ul class="navbar-nav mb-2 mb-lg-0">
                 {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url "sevo-auth-user-detail" %}">{% trans "navbar_user_greeting" %}, {{ user }}!</a>
+                        <a class="nav-link" href="{% url "sevo-auth-user-detail" %}">{% trans "Hello" %}, {{ user }}!</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url "sevo-auth-logout" %}"><i class="demo-icon icon-logout"></i></a>

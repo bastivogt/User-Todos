@@ -17,25 +17,25 @@
             <div class="card-body">
                 <div class="mb-1">
                     <strong>
-                        {% trans "sevo_auth_username_lbl" %}: 
+                        {% trans "Username" %}: 
                     </strong>
                     {{ user.username }}
                 </div>
                 <div class="mb-1">
                     <strong>
-                        {% trans "sevo_auth_email_lbl" %}: 
+                        {% trans "E-Mail" %}: 
                     </strong>
                     {{ user.email }}
                 </div>
                 <div class="mb-1">
-                    <a href="{% url "sevo-auth-change-user-data" %}">{% trans "sevo_auth_change_user_data_link" %}</a>
+                    <a href="{% url "sevo-auth-change-user-data" %}">{% trans "Change userdata" %}</a>
                 </div>
                 <div class="mb-1">
-                    <a href="{% url "sevo-auth-change-password" %}">{% trans "sevo_auth_change_password_link" %}</a>
+                    <a href="{% url "sevo-auth-change-password" %}">{% trans "Change password" %}</a>
                 </div>
             </div>
             <div class="card-footer">
-                <a class="btn btn-primary" href="{% url "sevo-auth-logout" %}">{% trans "sevo_auth_logout_btn" %}</a>
+                <a class="btn btn-primary" href="{% url "sevo-auth-logout" %}">{% trans "Logout" %}</a>
             </div>
         </div>
     </div>

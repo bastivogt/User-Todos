@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-23 01:48+0200\n"
+"POT-Creation-Date: 2024-05-23 03:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,181 +19,171 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: .\todos\forms.py:17 .\todos\templates\todos\todo\partials\_table_list.html:6
-msgid "title_lbl"
+msgid "Title"
 msgstr "Title"
 
 #: .\todos\forms.py:18
-msgid "content_lbl"
+msgid "Content"
 msgstr "Content"
 
-#: .\todos\forms.py:19
-msgid "tags_slt"
+#: .\todos\forms.py:19 .\todos\templates\todos\todo\detail.html:24
+#: .\todos\views\tag_views.py:20
+msgid "Tags"
 msgstr "Tags"
 
 #: .\todos\forms.py:20
-msgid "done_lbl"
+#: .\todos\templates\todos\todo\partials\_done_filter.html:8
+msgid "Done"
 msgstr "Done"
 
 #: .\todos\forms.py:21 .\todos\templates\todos\todo\detail.html:18
 #: .\todos\templates\todos\todo\partials\_table_list.html:7
-msgid "created_at_lbl"
+msgid "Created at"
 msgstr "Created at"
 
 #: .\todos\forms.py:22 .\todos\templates\todos\todo\detail.html:21
 #: .\todos\templates\todos\todo\partials\_table_list.html:8
-msgid "updated_at_lbl"
+msgid "Updated at"
 msgstr "Updated at"
 
-#: .\todos\forms.py:44
-msgid "tag_name_lbl"
+#: .\todos\forms.py:44 .\todos\templates\todos\tag\partials\_table_list.html:6
+msgid "Name"
 msgstr "Name"
 
 #: .\todos\templates\todos\tag\delete.html:17
-msgid "todos_tag_really_delete"
+msgid "Do you really want to delete this tag?"
 msgstr "Do you really want to delete this tag?"
 
 #: .\todos\templates\todos\tag\index.html:24
-msgid "todos_tags_none_tags"
+msgid "No tags available."
 msgstr "No tags available."
-
-#: .\todos\templates\todos\tag\partials\_table_list.html:6
-msgid "todos_tags_name_lbl"
-msgstr "Name"
 
 #: .\todos\templates\todos\tag\partials\_table_list.html:7
 #: .\todos\templates\todos\todo\partials\_table_list.html:9
-msgid "todos_table_actions"
+msgid "Actions"
 msgstr "Actions"
 
 #: .\todos\templates\todos\todo\delete.html:20
-msgid "todos_really_delete"
+msgid "Do you really want to delete this todo?"
 msgstr "Do you really want to delete this todo?"
 
 #: .\todos\templates\todos\todo\index.html:25
-msgid "todos_none_todos"
-msgstr "No todas available."
+msgid "No todos available."
+msgstr "No todos available."
 
 #: .\todos\templates\todos\todo\index.html:36
-msgid "todos_tag_filter_title"
-msgstr "Filter tags"
+msgid "Filter tag"
+msgstr "Filter tag"
 
 #: .\todos\templates\todos\todo\index.html:47
-msgid "todos_done_filter_title"
+msgid "Filter done"
 msgstr "Filter done"
 
 #: .\todos\templates\todos\todo\index.html:58
-msgid "todos_ordering_filter_title"
+msgid "Order"
 msgstr "Order"
 
 #: .\todos\templates\todos\todo\partials\_done_filter.html:5
 #: .\todos\templates\todos\todo\partials\_tag_filter.html:5
-msgid "todos_filter_all_link"
+msgid "All"
 msgstr "All"
 
-#: .\todos\templates\todos\todo\partials\_done_filter.html:8
-msgid "todos_filter_done_true"
-msgstr "Done true"
-
 #: .\todos\templates\todos\todo\partials\_done_filter.html:11
-msgid "todos_filter_done_false"
-msgstr "Done false"
+msgid "Not done"
+msgstr "Not done"
 
 #: .\todos\templates\todos\todo\partials\_ordering_filter.html:5
-msgid "todos_ordering_created_at_asc"
+msgid "Created at ascending"
 msgstr "Created at ascending"
 
 #: .\todos\templates\todos\todo\partials\_ordering_filter.html:8
-msgid "todos_ordering_created_at_desc"
+msgid "Created at descending"
 msgstr "Created at descending"
 
 #: .\todos\templates\todos\todo\partials\_ordering_filter.html:11
-msgid "todos_ordering_updated_at_asc"
+msgid "Updated at ascending"
 msgstr "Updated at ascending"
 
 #: .\todos\templates\todos\todo\partials\_ordering_filter.html:14
-msgid "todos_ordering_updated_at_desc"
+msgid "Updated at descending"
 msgstr "Updated at descending"
 
-#: .\todos\views\tag_views.py:20
-msgid "tag_index_title"
-msgstr "Tags"
-
 #: .\todos\views\tag_views.py:39
-msgid "todos_tag_new_success_msg"
-msgstr "Tag was created."
+msgid "Tag created!"
+msgstr "Tag created!"
 
 #: .\todos\views\tag_views.py:43
-msgid "todos_tag_new_error_msg"
-msgstr "Tag was not created."
+msgid "Failed, tag not created!"
+msgstr "Failed, tag not created!"
 
 #: .\todos\views\tag_views.py:51
-msgid "todos_tag_new_title"
+msgid "New tag"
 msgstr "New tag"
 
-#: .\todos\views\tag_views.py:52 .\todos\views\tag_views.py:84
-#: .\todos\views\todo_views.py:120 .\todos\views\todo_views.py:152
-#: .\todos\views_.py:63 .\todos\views_.py:96
-msgid "todos_send_btn_title"
-msgstr "Send"
+#: .\todos\views\tag_views.py:52 .\todos\views\todo_views.py:120
+msgid "Create"
+msgstr "Create"
 
 #: .\todos\views\tag_views.py:71
-msgid "todos_tag_update_success_msg"
-msgstr "Tag was updated."
+msgid "Tag updated!"
+msgstr "Tag updated!"
 
 #: .\todos\views\tag_views.py:75
-msgid "todos_tag_update_error_msg"
-msgstr "Tag was not updated."
+msgid "Failed, tag not updated!"
+msgstr "Failed, tag not updated!"
 
 #: .\todos\views\tag_views.py:83
-msgid "todos_tag_update_title"
-msgstr "Tag update"
+msgid "Update tag"
+msgstr "Update tag"
 
-#: .\todos\views\tag_views.py:100
-msgid "todos_tag_delete_msg"
-msgstr "deleted."
+#: .\todos\views\tag_views.py:84 .\todos\views\todo_views.py:152
+msgid "Update"
+msgstr "Update"
 
-#: .\todos\views\tag_views.py:106 .\todos\views\todo_views.py:209
-#: .\todos\views_.py:154
-msgid "todos_delete_title"
-msgstr "Todo delete"
+#: .\todos\views\tag_views.py:100 .\todos\views\todo_views.py:201
+msgid "deleted"
+msgstr "deleted"
 
-#: .\todos\views\todo_views.py:84 .\todos\views_.py:28
-msgid "todos_index_title"
+#: .\todos\views\tag_views.py:106
+msgid "Delete tag"
+msgstr "Delete tag"
+
+#: .\todos\views\todo_views.py:84
+msgid "Todos"
 msgstr "Todos"
 
-#: .\todos\views\todo_views.py:107 .\todos\views_.py:49 .\todos\views_.py:53
-#: .\todos\views_.py:82 .\todos\views_.py:86
-msgid "todos_new_success_msg"
-msgstr "Todo was created."
+#: .\todos\views\todo_views.py:107
+msgid "Todo created!"
+msgstr "Todo created!"
 
 #: .\todos\views\todo_views.py:111
-msgid "todos_new_error_msg"
-msgstr "Todo was not created."
+msgid "Failed, todo not created!"
+msgstr "Failed, todo not created!"
 
-#: .\todos\views\todo_views.py:119 .\todos\views_.py:62
-msgid "todos_new_title"
+#: .\todos\views\todo_views.py:119
+msgid "New todo"
 msgstr "New todo"
 
 #: .\todos\views\todo_views.py:139
-msgid "todos_update_success_msg"
-msgstr "Todo was updated."
+msgid "Todo updated!"
+msgstr "Todo updated!"
 
 #: .\todos\views\todo_views.py:143
-msgid "todos_update_error_msg"
-msgstr "Todo was not updated."
+msgid "Failed, todo not updated!"
+msgstr "Failed, todo not updated!"
 
 #: .\todos\views\todo_views.py:162
-msgid "todos_done_msg_done"
+msgid "done"
 msgstr "done"
 
 #: .\todos\views\todo_views.py:163
-msgid "todos_done_msg_not_done"
+msgid "not done"
 msgstr "not done"
 
-#: .\todos\views\todo_views.py:187 .\todos\views_.py:132
-msgid "todos_detail_title"
+#: .\todos\views\todo_views.py:187
+msgid "Todo detail"
 msgstr "Todo detail"
 
-#: .\todos\views\todo_views.py:201
-msgid "todos_delete_msg"
-msgstr "deleted."
+#: .\todos\views\todo_views.py:209
+msgid "Delete todo"
+msgstr "Delete todo"

@@ -14,12 +14,12 @@ class TodoForm(forms.ModelForm):
         fields = "__all__"
         exclude = ["user"]
         labels = {
-            "title": _("title_lbl"),
-            "content": _("content_lbl"),
-            "tags": _("tags_slt"), 
-            "done": _("done_lbl"),
-            "created_at": _("created_at_lbl"),
-            "updated_at": _("updated_at_lbl")
+            "title": _("Title"),
+            "content": _("Content"),
+            "tags": _("Tags"), 
+            "done": _("Done"),
+            "created_at": _("Created at"),
+            "updated_at": _("Updated at")
         }
         widgets = {
             #"user": forms.HiddenInput(),
@@ -41,7 +41,7 @@ class TagForm(forms.ModelForm):
         fields = "__all__"
         exclude = ["user"]
         labels = {
-            "name": _("tag_name_lbl")
+            "name": _("Name")
         }
         widgets = {
             "name": forms.TextInput(attrs={"class": "form-control"})

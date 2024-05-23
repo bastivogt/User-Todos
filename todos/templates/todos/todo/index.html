@@ -22,7 +22,7 @@
         {% if todos %}
             {% include "todos/todo/partials/_table_list.html" with todos=todos %}
         {% else %}
-            <p>{% trans "todos_none_todos" %}</p>
+            <p>{% trans "No todos available." %}</p>
         {% endif %}
     </div>
 
@@ -33,7 +33,7 @@
         <div class="card mb-3">
             <div class="card-header">
                 <h5>
-                    {% trans "todos_tag_filter_title" %}
+                    {% trans "Filter tag" %}
                 </h5>
             </div>
             <div class="card-body">
@@ -44,7 +44,7 @@
         <div class="card mb-3">
             <div class="card-header">
                 <h5>
-                    {% trans "todos_done_filter_title" %}
+                    {% trans "Filter done" %}
                 </h5>
             </div>
             <div class="card-body">
@@ -55,7 +55,7 @@
         <div class="card mb-3">
             <div class="card-header">
                 <h5>
-                    {% trans "todos_ordering_filter_title" %}
+                    {% trans "Order" %}
                 </h5>
             </div>
             <div class="card-body">

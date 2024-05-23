@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-23 01:34+0200\n"
+"POT-Creation-Date: 2024-05-23 03:16+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,121 +17,96 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
 #: .\sevo_auth\forms.py:20 .\sevo_auth\forms.py:32 .\sevo_auth\forms.py:61
 #: .\sevo_auth\templates\sevo_auth\user_detail.html:20
-msgid "sevo_auth_username_lbl"
+msgid "Username"
 msgstr "Username"
 
 #: .\sevo_auth\forms.py:21 .\sevo_auth\forms.py:35 .\sevo_auth\forms.py:63
-msgid "sevo_auth_password_lbl"
+msgid "Password"
 msgstr "Password"
 
 #: .\sevo_auth\forms.py:33 .\sevo_auth\forms.py:62
 #: .\sevo_auth\templates\sevo_auth\user_detail.html:26
-msgid "sevo_auth_email_lbl"
+msgid "E-Mail"
 msgstr "E-Mail"
 
 #: .\sevo_auth\forms.py:36
-msgid "sevo_auth_password_confirm_lbl"
+msgid "Password confirm"
 msgstr "Password confirm"
 
 #: .\sevo_auth\forms.py:51
-msgid "sevo_auth_new_password_lbl"
-msgstr "New password"
+msgid "New password"
+msgstr "New Password"
 
 #: .\sevo_auth\forms.py:52
-msgid "sevo_auth_new_password_confirm_lbl"
+msgid "New password confirm"
 msgstr "New password confirm"
 
 #: .\sevo_auth\templates\sevo_auth\change_password.html:30
-msgid "sevo_auth_change_password_btn"
+#: .\sevo_auth\templates\sevo_auth\user_detail.html:34 .\sevo_auth\views.py:151
+msgid "Change password"
 msgstr "Change password"
 
 #: .\sevo_auth\templates\sevo_auth\change_user_data.html:50
-msgid "sevo_auth_change_user_data_btn"
+#: .\sevo_auth\templates\sevo_auth\user_detail.html:31 .\sevo_auth\views.py:196
+msgid "Change userdata"
 msgstr "Change userdata"
 
 #: .\sevo_auth\templates\sevo_auth\login.html:32
-msgid "sevo_auth_login_btn"
+#: .\sevo_auth\templates\sevo_auth\sign_up.html:36 .\sevo_auth\views.py:72
+msgid "Login"
 msgstr "Login"
 
 #: .\sevo_auth\templates\sevo_auth\login.html:36
-msgid "sevo_auth_sign_up_link"
-msgstr "Sign up"
-
-#: .\sevo_auth\templates\sevo_auth\sign_up.html:32
-msgid "sevo_auth_sign_up_btn"
-msgstr "Sign up"
-
-#: .\sevo_auth\templates\sevo_auth\sign_up.html:36
-msgid "sevo_auth_login_link"
-msgstr "Login"
-
-#: .\sevo_auth\templates\sevo_auth\user_detail.html:31
-msgid "sevo_auth_change_user_data_link"
-msgstr "Change userdata"
-
-#: .\sevo_auth\templates\sevo_auth\user_detail.html:34
-msgid "sevo_auth_change_password_link"
-msgstr "Change password"
+#: .\sevo_auth\templates\sevo_auth\sign_up.html:32 .\sevo_auth\views.py:110
+msgid "Sign up"
+msgstr "Sign Up"
 
 #: .\sevo_auth\templates\sevo_auth\user_detail.html:38
-msgid "sevo_auth_logout_btn"
+msgid "Logout"
 msgstr "Logout"
 
 #: .\sevo_auth\views.py:47
-msgid "sevo_auth_logout_msg"
-msgstr "you are logged out."
+msgid "You are logged out!"
+msgstr "You are logged out!"
 
 #: .\sevo_auth\views.py:64
-msgid "sevo_auth_login_success_msg"
-msgstr "You are logged in."
+msgid "You are logged in!"
+msgstr "You are logged in!"
 
 #: .\sevo_auth\views.py:67
-msgid "sevo_auth_login_failed_msg"
-msgstr "Login failed."
+msgid "Login failed!"
+msgstr "Login failed!"
 
-#: .\sevo_auth\views.py:72
-msgid "sevo_auth_login_title"
-msgstr "Login"
+#: .\sevo_auth\views.py:91
+msgid "Failed password confirm!"
+msgstr "Failed password confirm!"
 
-#: .\sevo_auth\views.py:91 .\sevo_auth\views.py:135
-msgid "sevo_auth_password_confirm_fail_msg"
-msgstr "Password confirm failed."
-
-#: .\sevo_auth\views.py:95
-msgid "sevo_auth_sign_up_error_user_exists_msg"
-msgstr "This username exists."
+#: .\sevo_auth\views.py:95 .\sevo_auth\views.py:191
+msgid "Failed, username allready exists!"
+msgstr "Failed, username allready exists!"
 
 #: .\sevo_auth\views.py:102
-msgid "sevo_auth_sign_up_success_msg"
-msgstr "you are signed up."
-
-#: .\sevo_auth\views.py:110
-msgid "sevo_auth_sign_up_title"
-msgstr "Sign up"
+msgid "You are signed up!"
+msgstr "You are signed up!"
 
 #: .\sevo_auth\views.py:118
-msgid "sevo_auth_user_detail_greeting"
+msgid "Hello"
 msgstr "Hello"
 
-#: .\sevo_auth\views.py:150
-msgid "sevo_auth_change_password_title"
-msgstr "Change password"
+#: .\sevo_auth\views.py:135
+msgid "Change password failed!"
+msgstr ""
 
-#: .\sevo_auth\views.py:171
-msgid "sevo_auth_change_user_data_user_exists_fail_msg"
-msgstr "This username exists."
+#: .\sevo_auth\views.py:141
+msgid "Change password successful!"
+msgstr "Change password Successful!"
 
-#: .\sevo_auth\views.py:177
-msgid "sevo_auth_change_success_msg"
-msgstr "Userdata are changed."
-
-#: .\sevo_auth\views.py:182
-msgid "sevo_auth_change_user_wrong_password_msg"
-msgstr "Your password was wrong."
+#: .\sevo_auth\views.py:184
+msgid "Userdata successful changed!"
+msgstr "Userdata successful changed!"
 
 #: .\sevo_auth\views.py:189
-msgid "sevo_auth_change_user_data_title"
-msgstr "Change userdata"
+msgid "Failed, wrong password!"
+msgstr "Failed, wrong password!"

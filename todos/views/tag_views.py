@@ -17,7 +17,7 @@ def tag_index(request):
     tags = tags.filter(user=current_user)
 
     return render(request, "todos/tag/index.html", {
-        "title": _("tag_index_title"),
+        "title": _("Tags"),
         "tags": tags
     })
 
@@ -36,11 +36,11 @@ def tag_new(request):
         
         if form.is_valid():
             form.save()
-            messages.add_message(request, messages.SUCCESS, _("todos_tag_new_success_msg"))
+            messages.add_message(request, messages.SUCCESS, _("Tag created!"))
             url = reverse("todos-tag-index")
             return HttpResponseRedirect(url)
         else:
-            messages.add_message(request, messages.ERROR, _("todos_tag_new_error_msg"))
+            messages.add_message(request, messages.ERROR, _("Failed, tag not created!"))
 
 
             
@@ -48,8 +48,8 @@ def tag_new(request):
         form = forms.TagForm( instance=tag)
 
     return render(request, "todos/tag/new.html", {
-        "title": _("todos_tag_new_title"),
-        "send_btn_title": _("todos_send_btn_title"),
+        "title": _("New tag"),
+        "send_btn_title": _("Create"),
         "form": form
     })
 
@@ -68,11 +68,11 @@ def tag_update(request, id):
         
         if form.is_valid():
             form.save()
-            messages.add_message(request, messages.SUCCESS, _("todos_tag_update_success_msg"))
+            messages.add_message(request, messages.SUCCESS, _("Tag updated!"))
             url = reverse("todos-tag-index")
             return HttpResponseRedirect(url)
         else:
-            messages.add_message(request, messages.ERROR, _("todos_tag_update_error_msg"))
+            messages.add_message(request, messages.ERROR, _("Failed, tag not updated!"))
 
 
             
@@ -80,8 +80,8 @@ def tag_update(request, id):
         form = forms.TagForm( instance=tag)
 
     return render(request, "todos/tag/new.html", {
-        "title": _("todos_tag_update_title"),
-        "send_btn_title": _("todos_send_btn_title"),
+        "title": _("Update tag"),
+        "send_btn_title": _("Update"),
         "form": form
     })
 
@@ -97,12 +97,12 @@ def tag_delete(request, id):
 
     if request.method == "POST":
         tag.delete()
-        delete_msg = _("todos_tag_delete_msg")
-        messages.add_message(request, messages.ERROR, f'{tag.name}, {delete_msg}')
+        delete_msg = _("deleted")
+        messages.add_message(request, messages.ERROR, f'{tag.name}, {delete_msg}!')
         return HttpResponseRedirect(url)
 
     
     return render(request, "todos/tag/delete.html", {
-        "title": _("todos_delete_title"),
+        "title": _("Delete tag"),
         "tag": tag
     })

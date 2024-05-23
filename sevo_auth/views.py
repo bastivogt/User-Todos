@@ -44,7 +44,7 @@ from django.utils.translation import gettext_lazy as _
 def logout(request):
     url = reverse("sevo-auth-login")
     auth_logout(request)
-    messages.add_message(request, messages.SUCCESS, _("sevo_auth_logout_msg"))
+    messages.add_message(request, messages.SUCCESS, _("You are logged out!"))
     return HttpResponseRedirect(url)
 
 
@@ -61,15 +61,15 @@ def login(request):
 
             if user is not None:
                 auth_login(request, user)
-                messages.add_message(request, messages.SUCCESS, _("sevo_auth_login_success_msg"))
+                messages.add_message(request, messages.SUCCESS, _("You are logged in!"))
                 return HttpResponseRedirect(url)
             else:
-                messages.add_message(request, messages.ERROR, _("sevo_auth_login_failed_msg"))   
+                messages.add_message(request, messages.ERROR, _("Login failed!"))   
                 return HttpResponseRedirect(url)
     else:
         form = forms.SevoLoginForm()
     return render(request, "sevo_auth/login.html", {
-        "title": _("sevo_auth_login_title"),
+        "title": _("Login"),
         "form": form
     })
 
@@ -88,18 +88,18 @@ def sign_up(request):
 
 
             if password != password_confirm:
-                messages.add_message(request, messages.ERROR, _("sevo_auth_password_confirm_fail_msg"))
+                messages.add_message(request, messages.ERROR, _("Failed password confirm!"))
             else:
                 try:
                     user = User.objects.get(username=username)
-                    messages.add_message(request, messages.ERROR, _("sevo_auth_sign_up_error_user_exists_msg"))
+                    messages.add_message(request, messages.ERROR, _("Failed, username allready exists!"))
                     # url("sevo-auth-sign_up")
                     # return HttpResponseRedirect(url)
                 except:
                     user = User(username=username, email=email)
                     user.set_password(password)
                     user.save()
-                    messages.add_message(request, messages.SUCCESS, _("sevo_auth_sign_up_success_msg"))
+                    messages.add_message(request, messages.SUCCESS, _("You are signed up!"))
                     url = reverse("sevo-auth-user-detail")
                     return HttpResponseRedirect(url)
                 
@@ -107,7 +107,7 @@ def sign_up(request):
         form = forms.SevoSignUpForm()
     
     return render(request, "sevo_auth/sign_up.html", {
-        "title": _("sevo_auth_sign_up_title"),
+        "title": _("Sign up"),
         "form": form
     })
 
@@ -115,7 +115,7 @@ def sign_up(request):
 @login_required(login_url="sevo-auth-login")
 def user_detail(request):
     current_user = request.user
-    greeting_word = _("sevo_auth_user_detail_greeting")
+    greeting_word = _("Hello")
     greeting = f"{greeting_word}, {current_user.username}!"
     return render(request, "sevo_auth/user_detail.html", {
         "greeting": greeting,
@@ -132,12 +132,13 @@ def change_password(request):
             password = form.cleaned_data["password"]
             password_confirm = form.cleaned_data["password_confirm"]
             if(password != password_confirm):
-                messages.add_message(request, messages.ERROR, _("sevo_auth_password_confirm_fail_msg"))
+                messages.add_message(request, messages.ERROR, _("Change password failed!"))
                 # url = reverse("sevo-auth-change-password")
                 # return HttpResponseRedirect(url)
             else:
                 current_user.set_password(password)
                 current_user.save()
+                messages.add_message(request, messages.SUCCESS, _("Change password successful!"))
                 url = reverse("sevo-auth-logout")
                 return HttpResponseRedirect(url)
 
@@ -147,7 +148,7 @@ def change_password(request):
         form = forms.SevoChangePasswordForm()
 
     return render(request, "sevo_auth/change_password.html", {
-        "title": _("sevo_auth_change_password_title"),
+        "title": _("Change password"),
         "form": form
     })
 
@@ -166,27 +167,33 @@ def change_user_data(request):
             username = form.cleaned_data["username"]
             email = form.cleaned_data["email"]
             password = form.cleaned_data["password"]
+            new_username_exists = False
+
             try:
-                tmp_user = User.objects.get(username=username)
-                messages.add_message(request, messages.ERROR, _("sevo_auth_change_user_data_user_exists_fail_msg"))
+                if current_user.username != username:
+                    temp_user = tmp_user = User.objects.get(username=username)
+                    new_username_exists = True
             except:
+                new_username_exists = False
+
+            if not new_username_exists:
                 current_user.username = username
                 current_user.email = email
                 if current_user.check_password(password):
                     current_user.save()
-                    messages.add_message(request, messages.SUCCESS, _("sevo_auth_change_success_msg"))
+                    messages.add_message(request, messages.SUCCESS, _("Userdata successful changed!"))
 
                     url = reverse("sevo-auth-user-detail")
                     return HttpResponseRedirect(url)
                 else:
-                    messages.add_message(request, messages.ERROR, _("sevo_auth_change_user_wrong_password_msg"))
-
-
+                    messages.add_message(request, messages.ERROR, _("Failed, wrong password!"))
+            else:
+                messages.add_message(request, messages.ERROR, _("Failed, username allready exists!"))
 
     else:
         form = forms.SevoChangeUserDataForm(initial=inital_data)
     return render(request, "sevo_auth/change_user_data.html", {
-        "title": _("sevo_auth_change_user_data_title"),
+        "title": _("Change userdata"),
         "form": form
     })
 
