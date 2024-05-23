@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -12,6 +12,8 @@ from django.http import HttpResponseRedirect
 from django.contrib import messages
 
 from . import forms
+from . import helpers
+from . import models
 
 from django.utils.translation import gettext_lazy as _
 
@@ -71,7 +73,8 @@ def login(request):
         form = forms.SevoLoginForm()
     return render(request, "sevo_auth/login.html", {
         "title": _("Login"),
-        "form": form
+        "form": form, 
+        "random_password": helpers.create_token()
     })
 
 
@@ -188,6 +191,106 @@ def change_user_data(request):
         form = forms.SevoChangeUserDataForm(initial=inital_data)
     return render(request, "sevo_auth/change_user_data.html", {
         "title": _("Change userdata"),
+        "form": form
+    })
+
+
+
+def forgot_password(request):
+    success = False
+    if request.method == "POST":
+        form = forms.ForgotPasswordForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data["username"]
+            email = form.cleaned_data["email"]
+
+            try:
+                user = User.objects.get(username=username, email=email)
+                token_str = helpers.create_token()
+                print(f"Token: {token_str}")
+                try:
+                    token = models.PasswordResetToken.objects.get(user=user)
+                    token.token = token_str
+                except:
+                    token = models.PasswordResetToken(user=user, token=token_str)
+                
+                print(token)
+                token.save()
+                print(user)
+                # send token link per mail
+                success = True
+                
+
+            except:
+                
+                # HttpResponseRedirect(url)
+                success = False
+
+
+        print(f"success: {success}") 
+        if success:
+            messages.add_message(request, messages.SUCCESS, _("Please, check your e-mails!"))
+            url = reverse("sevo-auth-set-new-password-token", args=[token_str])
+            response = HttpResponseRedirect(url)
+            domain = request.build_absolute_uri('/')[:-1]
+            link = f"{domain}{response.url}"
+            print(f"Resetlink per Mail: {link}")
+        else:
+            messages.add_message(request, messages.ERROR, _("Username not found"))
+
+
+    else:
+        form = forms.ForgotPasswordForm()
+
+    return render(request, "sevo_auth/forgot_password.html", {
+        "title": _("Forgot password"),
+        "form": form
+    })
+
+
+
+def set_new_password_token(request, token):
+    the_token = get_object_or_404(models.PasswordResetToken, token=token)
+    if request.method == "POST":
+        form = forms.SevoSignUpForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get("username")
+            email = form.cleaned_data.get("email")
+            password = form.cleaned_data.get("password")
+            password_confirm = form.cleaned_data.get("password_confirm")
+
+            user_success = False
+
+            print(username)
+            print(email)
+            print(password)
+            print(password_confirm)
+
+            if password != password_confirm:
+                messages.add_message(request, messages.ERROR, _("Fail, password not confirm!"))
+                print("11111")
+            try:
+                user = User.objects.get(username=username, email=email)
+                user.set_password(password)
+                user.save()
+                the_token.delete()
+                user_success = True
+                user_success = True
+            except:
+                user_success = False
+            
+
+            if user_success:
+                messages.add_message(request, messages.SUCCESS, _("Password changed!"))
+                url = reverse("sevo-auth-login")
+                return HttpResponseRedirect(url)
+            else:
+                messages.add_message(request, messages.ERROR, _("Fail, something went wrong!"))
+    else:
+        form = forms.SevoSignUpForm()
+
+    return render(request, "sevo_auth/set_new_password_token.html", {
+        "title": _("Set new password"), 
         "form": form
     })
 

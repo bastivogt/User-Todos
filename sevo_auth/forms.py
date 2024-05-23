@@ -71,3 +71,12 @@ class SevoChangeUserDataForm(forms.Form):
         self.fields["password"].widget.attrs["class"] = "form-control"
 
 
+
+class ForgotPasswordForm(forms.Form):
+    username = forms.CharField(max_length=255, label=_("Username"))
+    email = forms.CharField(max_length=255, widget=forms.EmailInput, label=_("E-Mail"))
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["email"].widget.attrs["class"] = "form-control"
+        self.fields["username"].widget.attrs["class"] = "form-control"
