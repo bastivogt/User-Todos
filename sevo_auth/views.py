@@ -73,8 +73,7 @@ def login(request):
         form = forms.SevoLoginForm()
     return render(request, "sevo_auth/login.html", {
         "title": _("Login"),
-        "form": form, 
-        "random_password": helpers.create_token()
+        "form": form
     })
 
 
@@ -259,12 +258,7 @@ def set_new_password_token(request, token):
             password = form.cleaned_data.get("password")
             password_confirm = form.cleaned_data.get("password_confirm")
 
-            user_success = False
-
-            print(username)
-            print(email)
-            print(password)
-            print(password_confirm)
+            user_exist = False
 
             if password != password_confirm:
                 messages.add_message(request, messages.ERROR, _("Fail, password not confirm!"))
@@ -274,13 +268,13 @@ def set_new_password_token(request, token):
                 user.set_password(password)
                 user.save()
                 the_token.delete()
-                user_success = True
-                user_success = True
+                user_exist = True
+                user_exist = True
             except:
-                user_success = False
+                user_exist = False
             
 
-            if user_success:
+            if user_exist:
                 messages.add_message(request, messages.SUCCESS, _("Password changed!"))
                 url = reverse("sevo-auth-login")
                 return HttpResponseRedirect(url)
