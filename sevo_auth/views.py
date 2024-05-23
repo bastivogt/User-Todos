@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login as auth_login, logout as aut
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password, check_password
+from django.db import IntegrityError
 
 
 from django.urls import reverse
@@ -91,17 +92,14 @@ def sign_up(request):
                 messages.add_message(request, messages.ERROR, _("Failed password confirm!"))
             else:
                 try:
-                    user = User.objects.get(username=username)
-                    messages.add_message(request, messages.ERROR, _("Failed, username allready exists!"))
-                    # url("sevo-auth-sign_up")
-                    # return HttpResponseRedirect(url)
-                except:
                     user = User(username=username, email=email)
                     user.set_password(password)
                     user.save()
                     messages.add_message(request, messages.SUCCESS, _("You are signed up!"))
                     url = reverse("sevo-auth-user-detail")
-                    return HttpResponseRedirect(url)
+                    return HttpResponseRedirect(url) 
+                except IntegrityError as e:
+                    messages.add_message(request, messages.ERROR, _("Failed, username allready exists!"))
                 
     else:
         form = forms.SevoSignUpForm()
@@ -167,28 +165,24 @@ def change_user_data(request):
             username = form.cleaned_data["username"]
             email = form.cleaned_data["email"]
             password = form.cleaned_data["password"]
-            new_username_exists = False
 
-            try:
-                if current_user.username != username:
-                    temp_user = tmp_user = User.objects.get(username=username)
-                    new_username_exists = True
-            except:
-                new_username_exists = False
-
-            if not new_username_exists:
-                current_user.username = username
-                current_user.email = email
-                if current_user.check_password(password):
+            current_user.username = username
+            current_user.email = email
+            if current_user.check_password(password):
+                try:
                     current_user.save()
                     messages.add_message(request, messages.SUCCESS, _("Userdata successful changed!"))
 
                     url = reverse("sevo-auth-user-detail")
                     return HttpResponseRedirect(url)
-                else:
-                    messages.add_message(request, messages.ERROR, _("Failed, wrong password!"))
+                except IntegrityError as e:
+                    messages.add_message(request, messages.ERROR, _("Failed, username allready exists!"))
+                    url = reverse("sevo-auth-change-user-data")
+                    return HttpResponseRedirect(url)
+            
             else:
-                messages.add_message(request, messages.ERROR, _("Failed, username allready exists!"))
+                messages.add_message(request, messages.ERROR, _("Failed, wrong password!"))
+
 
     else:
         form = forms.SevoChangeUserDataForm(initial=inital_data)
