@@ -221,8 +221,8 @@ def forgot_password(request):
                 
 
             except:
-                
-                # HttpResponseRedirect(url)
+                # url = reverse("sevo-auth-forgot-password")
+                # return HttpResponseRedirect(url)
                 success = False
 
 
@@ -262,7 +262,9 @@ def set_new_password_token(request, token):
 
             if password != password_confirm:
                 messages.add_message(request, messages.ERROR, _("Fail, password not confirm!"))
-                print("11111")
+                url = reverse("sevo-auth-set-new-password-token")
+                return HttpResponseRedirect(url)
+            
             try:
                 user = User.objects.get(username=username, email=email)
                 user.set_password(password)
