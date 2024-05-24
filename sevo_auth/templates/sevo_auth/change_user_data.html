@@ -47,7 +47,10 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn-primary">{% trans "Change userdata" %}</button>
+                    <div class="d-flex justify-content-start align-content-center">
+                        <button class="btn btn-primary m-1">{% trans "Change userdata" %}</button>
+                        <a class="btn btn-primary m-1" href="{% url "sevo-auth-user-detail" %}" class="btn btn-primary">{% trans "Cancel" %}</a>
+                    </div>
                 </div>
             </div>
         </form>

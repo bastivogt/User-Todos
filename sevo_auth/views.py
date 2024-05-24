@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password, check_password
 from django.db import IntegrityError
+from django.conf import settings
 
 
 from django.urls import reverse
@@ -45,7 +46,12 @@ from django.utils.translation import gettext_lazy as _
 
 # logout
 def logout(request):
-    url = reverse("sevo-auth-login")
+    if settings.SEVO_AUTH_LOGOUT_REDIRECT:
+        url = reverse(settings.SEVO_AUTH_LOGOUT_REDIRECT)
+    else:
+        url = reverse("sevo-auth-login")
+
+
     auth_logout(request)
     messages.add_message(request, messages.SUCCESS, _("You are logged out!"))
     return HttpResponseRedirect(url)
@@ -54,7 +60,12 @@ def logout(request):
 
 # login
 def login(request):
-    url = reverse("sevo-auth-user-detail")
+    if settings.SEVO_AUTH_LOGIN_REDIRECT:
+        url = reverse(settings.SEVO_AUTH_LOGIN_REDIRECT)
+    else:
+        url = reverse("sevo-auth-user-detail")
+
+    
     if request.method == "POST":
         form = forms.SevoLoginForm(request.POST)
         if form.is_valid():

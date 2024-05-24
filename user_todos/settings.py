@@ -172,3 +172,8 @@ MESSAGE_TAGS = {
     messages.ERROR: "danger"
 
 }
+
+
+
+SEVO_AUTH_LOGIN_REDIRECT = "index"
+SEVO_AUTH_LOGOUT_REDIRECT = "sevo-auth-login"
