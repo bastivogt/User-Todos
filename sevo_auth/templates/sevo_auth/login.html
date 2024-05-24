@@ -33,8 +33,12 @@
                 </div>
             </div>
         </form>
-        <a class="d-inline-block mt-3" href="{% url "sevo-auth-sign-up" %}">{% trans "Sign up" %}</a>
-        <br>
-        <a class="d-inline-block" href="{% url "sevo-auth-forgot-password" %}">{% trans "Forgot password" %}</a>
+        <div class="mt-3">
+            {% if can_sign_up %}
+                <a class="d-inline-block" href="{% url "sevo-auth-sign-up" %}">{% trans "Sign up" %}</a>
+                <br>
+            {% endif %}
+            <a class="d-inline-block" href="{% url "sevo-auth-forgot-password" %}">{% trans "Forgot password" %}</a>
+        </div>
     </div>
 {% endblock %}

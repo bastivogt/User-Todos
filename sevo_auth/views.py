@@ -89,45 +89,51 @@ def login(request):
         form = forms.SevoLoginForm()
     return render(request, "sevo_auth/login.html", {
         "title": _("Login"),
-        "form": form
+        "form": form,
+        "can_sign_up": settings.SEVO_AUTH_CAN_SIGN_UP
     })
 
 
 # sign_up
 def sign_up(request):
-    if request.method == "POST":
-        form = forms.SevoSignUpForm(request.POST)
-        if form.is_valid():
-            print("form valid")
-            email = form.cleaned_data["email"]
-            username = form.cleaned_data["username"]
-            password = form.cleaned_data["password"]
-            password_confirm = form.cleaned_data["password_confirm"]
+    if settings.SEVO_AUTH_CAN_SIGN_UP:
+        if request.method == "POST":
+            form = forms.SevoSignUpForm(request.POST)
+            if form.is_valid():
+                print("form valid")
+                email = form.cleaned_data["email"]
+                username = form.cleaned_data["username"]
+                password = form.cleaned_data["password"]
+                password_confirm = form.cleaned_data["password_confirm"]
 
 
 
-            if password != password_confirm:
-                messages.add_message(request, messages.ERROR, _("Failed password confirm!"))
-            else:
-                try:
-                    user = User(username=username, email=email)
-                    user.set_password(password)
-                    user.save()
-                    messages.add_message(request, messages.SUCCESS, _("You are signed up!"))
-                    url = reverse("sevo-auth-user-detail")
-                    return HttpResponseRedirect(url) 
-                except IntegrityError as e:
-                    messages.add_message(request, messages.ERROR, _("Failed, username allready exists!"))
-                
+                if password != password_confirm:
+                    messages.add_message(request, messages.ERROR, _("Failed password confirm!"))
+                else:
+                    try:
+                        user = User(username=username, email=email)
+                        user.set_password(password)
+                        user.save()
+                        messages.add_message(request, messages.SUCCESS, _("You are signed up!"))
+                        url = reverse("sevo-auth-user-detail")
+                        return HttpResponseRedirect(url) 
+                    except IntegrityError as e:
+                        messages.add_message(request, messages.ERROR, _("Failed, username allready exists!"))
+                    
+        else:
+            form = forms.SevoSignUpForm()
+        
+        return render(request, "sevo_auth/sign_up.html", {
+            "title": _("Sign up"),
+            "form": form
+        })
     else:
-        form = forms.SevoSignUpForm()
-    
-    return render(request, "sevo_auth/sign_up.html", {
-        "title": _("Sign up"),
-        "form": form
-    })
+        url = reverse("sevo-auth-login")
+        return HttpResponseRedirect(url)
 
 
+# user_detail
 @login_required(login_url="sevo-auth-login")
 def user_detail(request):
     current_user = request.user
@@ -139,6 +145,7 @@ def user_detail(request):
     })
 
 
+# change_password
 @login_required(login_url="sevo-auth-login")
 def change_password(request):
     current_user = request.user
@@ -168,7 +175,7 @@ def change_password(request):
         "form": form
     })
 
-
+# change_user_data
 @login_required(login_url="sevo-auth-login")
 def change_user_data(request):
     current_user = request.user
@@ -211,6 +218,7 @@ def change_user_data(request):
 
 
 
+# forgot_password
 def forgot_password(request):
     success = False
     if request.method == "POST":
