@@ -1,6 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
-from django.contrib.auth.models import User
+
+
+# from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password, check_password
 from django.db import IntegrityError
@@ -244,9 +249,15 @@ def forgot_password(request):
             response = HttpResponseRedirect(url)
             domain = request.build_absolute_uri('/')[:-1]
             link = f"{domain}{response.url}"
+            print("###############################################")
             print(f"Resetlink per Mail: {link}")
+            print("###############################################")
+            url = reverse("sevo-auth-forgot-password")
+            return HttpResponseRedirect(url)
         else:
             messages.add_message(request, messages.ERROR, _("Username not found"))
+            url = reverse("sevo-auth-forgot-password")
+            return HttpResponseRedirect(url)
 
 
     else:

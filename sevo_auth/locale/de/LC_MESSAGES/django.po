@@ -77,7 +77,7 @@ msgstr "Registrieren"
 
 #: .\sevo_auth\templates\sevo_auth\login.html:38 .\sevo_auth\views.py:256
 msgid "Forgot password"
-msgstr "Neues Passwort"
+msgstr "Passwort vergessen"
 
 #: .\sevo_auth\templates\sevo_auth\user_detail.html:38
 msgid "Logout"
